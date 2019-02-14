@@ -19,8 +19,7 @@ local-part@domain	(email address)
 
 The ability to reset an account password is a very common feature offered by many 
 modern-day software applications. This can also be an area where security vulnerabilities 
-exist with damaging consequences for a large system that has a high volume of active 
-users. Taking the information from our intial attack, we can then perform ....
-
-the first key piece of information (username/email) we are then, able to utilize this information in the 
-"forgot my password" feature. All that is 
+exist with damaging consequences for a large system, particularly those that have a 
+high volume of active users. Now looking at the "forgot my password" option, we are now able 
+to exploit this feature. Taking the information from our intial attack, we can perform 
+another attack by manipualting the POST request that this form submits.
