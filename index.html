@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<title>User Authentication Demo</title>
+	</head>
+	<body style="display: flex; justify-content: space-around;">
+		<div>
+			User Name: <input id="username" type="text"/>
+		<div>
+		<div>
+			Password: <input id="password" type="text"/>
+		<div>
+		<div>
+			<input type="button" onclick="login()" value="Login in"/>
+		</div>
+		<div>
+			<input type="button" value="Forgot password?"/>
+		</div>
+		<script>
+			function login(){
+				if(	document.getElementById("username").value == "user34" ){
+					if(document.getElementById("password").value == "mysecurepassword"){
+						console.log("Welcome USER34");						
+					}
+					else{
+						console.log("LOGIN FAILED: Incorrect password");
+					}
+				}
+				else{
+					console.log("LOGIN FAILED: Username not found");
+				}
+			}
+			
+			function passReset(){
+				
+			}
+		</script>
+	</body>
+</html>
