@@ -5,13 +5,17 @@
 		<title>User Authentication Demo</title>
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
-	<body class="body">
-		<div>
-			Username/Email: <input id="email" type="text"/>
-		<div>
-		<div>
-			Password: <input id="password" type="text"/>
-		<div>
+	<body class="mycenter">
+		<div class="loginForm">
+			<div>
+				<p>Username/Email:</p>
+				<p>Password:</p>			
+			</div>
+			<div>
+				<p><input id="email" type="text"/></p>
+				<p><input id="password" type="text"/></p>
+			</div>
+		</div>
 		<div>
 			<input type="button" onclick="login()" value="Login in"/>
 		</div>
@@ -40,7 +44,7 @@
 			}
 			function passReset(){
 				document.getElementById("resetText").innerHTML = "Please enter email address: ";
-				document.getElementById("myform").style = "display: block";
+				document.getElementById("myform").className = "showElement"
 			}
 		</script>
 	</body>

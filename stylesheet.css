@@ -3,10 +3,16 @@
 }
 
 .showElement > *{
-	display: block;
+	display: flex;
+	justify-content: center;
 }
 
-.body {
-	display: flex; 
-	justify-content: space-around;
+.loginForm {
+	display: flex;
+	justify-content: center;
+}
+
+.mycenter > div {
+	display: flex;
+	justify-content: center;
 }
