@@ -1,0 +1,12 @@
+.hideElement {
+	display: none;
+}
+
+.showElement > *{
+	display: block;
+}
+
+.body {
+	display: flex; 
+	justify-content: space-around;
+}

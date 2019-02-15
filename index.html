@@ -3,8 +3,9 @@
 <html lang="en">
 	<head>
 		<title>User Authentication Demo</title>
+		<link rel="stylesheet" href="stylesheet.css">
 	</head>
-	<body style="display: flex; justify-content: space-around;">
+	<body class="body">
 		<div>
 			Username/Email: <input id="email" type="text"/>
 		<div>
@@ -17,17 +18,17 @@
 		<div>
 			<input type="button" onclick="passReset()" value="Forgot password?"/>
 		</div>
-		<form>
+		<form id="myform" class="hideElement">
 			<p id="resetText"><p>
-			<input id="resetField" type="text" style="display: none">
-			<input id="resetButton" type="button" onclick="" value="Submit" style="display: none"/>
+			<input id="resetField" type="text">
+			<input id="resetButton" type="button" onclick="" value="Submit"/>
 		</form>
 		<script>
 			function login(){
 				let field = document.getElementById("email").value;
-				if(	field == "user34@gmail.com" || field == "user34"){
+				if(	field == "johnsmith@gmail.com" || field == "johnsmith"){
 					if(document.getElementById("password").value == "mysecurepassword"){
-						console.log("Welcome USER34");
+						console.log("Welcome John Smith");
 					}
 					else{
 						console.log("LOGIN FAILED: Incorrect password");
@@ -39,8 +40,7 @@
 			}
 			function passReset(){
 				document.getElementById("resetText").innerHTML = "Please enter email address: ";
-				document.getElementById("resetField").style = "display: block";
-				document.getElementById("resetButton").style = "display: block";
+				document.getElementById("myform").style = "display: block";
 			}
 		</script>
 	</body>
