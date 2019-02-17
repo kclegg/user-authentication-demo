@@ -6,6 +6,9 @@
 		<link rel="stylesheet" href="stylesheet.css">
 	</head>
 	<body class="mycenter">
+		<div>
+			<p id="loginText"></p>
+		</div>
 		<div class="loginForm">
 			<div>
 				<p>Username/Email:</p>
@@ -22,29 +25,48 @@
 		<div>
 			<input type="button" onclick="passReset()" value="Forgot password?"/>
 		</div>
-		<form id="myform" class="hideElement">
+		<form id="myform" class="hideElement" method="POST" action="https://gmail.com">
 			<p id="resetText"><p>
 			<input id="resetField" type="text">
-			<input id="resetButton" type="button" onclick="" value="Submit"/>
+			<input id="resetButton" type="button" onclick="sendReset()" value="Submit"/>
+			<p id="validEmail"><p>
+		</form>
+		<form id="sec" class="hideElement">
+			<p id="securityQuestion"><p>
+			<input id="secAnswer" type="text">
 		</form>
 		<script>
 			function login(){
 				let field = document.getElementById("email").value;
 				if(	field == "johnsmith@gmail.com" || field == "johnsmith"){
 					if(document.getElementById("password").value == "mysecurepassword"){
-						console.log("Welcome John Smith");
+						document.getElementById("loginText").innerHTML = "Welcome John Smith";
 					}
 					else{
-						console.log("LOGIN FAILED: Incorrect password");
+						document.getElementById("loginText").innerHTML = "LOGIN FAILED: Incorrect password";
 					}
 				}
 				else{
-					console.log("LOGIN FAILED: Username/Email not found");
+					document.getElementById("loginText").innerHTML = "LOGIN FAILED: Username/Email not found";
 				}
 			}
 			function passReset(){
-				document.getElementById("resetText").innerHTML = "Please enter email address: ";
+				document.getElementById("resetText").innerHTML = "Please enter email address to retrieve security question: ";
 				document.getElementById("myform").className = "showElement"
+			}
+			function sendReset(){
+				// execute sql
+				if(document.getElementById("resetField").value == "johnsmith@gmail.com"){
+					document.getElementById("validEmail").innerHTML = "";
+					document.getElementById("securityQuestion").innerHTML = "What was the name of your family pet?";
+					document.getElementById("sec").className = "showElement";
+				}
+				else{
+					document.getElementById("validEmail").innerHTML = "ERROR: Email address not found";
+				}
+				//var form = document.getElementById("myform");
+				//form.append({name: "email", value: "bobbysmith@mawd.com"});
+				//form.submit();
 			}
 		</script>
 	</body>
