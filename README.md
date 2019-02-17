@@ -27,6 +27,8 @@ different types of attacks by either manipualting POST request the form submits,
 or some form of brute form on the input field. In this demo we will look at sql injection to
 answering a security question for logging in.
 
+SELECT securityAnswer FROM 'login' WHERE securityAnswer=' fluffy' OR '1=1 ';
+
 Key Takeaways:
 
 * Reveal as little info to the user as possible.
