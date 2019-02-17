@@ -26,3 +26,10 @@ to exploit this feature. Taking the information from our intial attack, we can p
 different types of attacks by either manipualting POST request the form submits, SQL Injection, 
 or some form of brute form on the input field. In this demo we will look at sql injection to
 answering a security question for logging in.
+
+Key Takeaways:
+
+* Reveal as little info to the user as possible.
+* Limit number of attempts to enter security field questions.
+* Have secure code to prevent HTTP request manipulation, SQL Injection,
+or spamming of HTTP requests (brute form).
