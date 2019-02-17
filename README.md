@@ -33,5 +33,6 @@ Key Takeaways:
 
 * Reveal as little info to the user as possible.
 * Limit number of attempts to enter security field questions.
+* Prevent changing of HTTP request type.
 * Have secure code to prevent HTTP request manipulation, SQL Injection,
 or spamming of HTTP requests (brute form).
