@@ -39,26 +39,10 @@
 		<main id="main">
 			<label>Load a database file: <input type="file" id="txtfile" ></label>
 		</main>
+		<div>
+			<p id="loginOutput"></p>
+		</div>
 		<script>
-			function login(){
-				let field = document.getElementById("email").value;
-				if(	field == "johnsmith@gmail.com" || field == "johnsmith"){
-					if(document.getElementById("password").value == "mysecurepassword"){
-						document.getElementById("loginText").innerHTML = "Welcome John Smith";
-					}
-					else{
-						document.getElementById("loginText").innerHTML = "LOGIN FAILED: Incorrect password";
-					}
-				}
-				else if(field == "admin2@gmail.com" || field == "rootadmin"){
-					if(document.getElementById("password").value == "password"){
-						document.getElementById("loginText").innerHTML = "Welcome Admin";
-					}
-				}
-				else{
-					document.getElementById("loginText").innerHTML = "LOGIN FAILED: Username/Email not found";
-				}
-			}
 			function passReset(){
 				document.getElementById("resetText").innerHTML = "Please enter email address to retrieve security question: ";
 				document.getElementById("myform").className = "showElement"
@@ -76,6 +60,35 @@
 		</script>
 		<script src='/node_modules/sql.js/js/sql.js'></script>
 		<script>
+			function login(){
+				var SQL = window.SQL;
+				var dbFileElm = document.getElementById('txtfile');
+
+				var f = dbFileElm.files[0];
+				var r = new FileReader();
+				var output = "";
+				r.onload = function() {
+					var Uints = new Uint8Array(r.result);
+					db = new SQL.Database(Uints);
+					var user = db.exec("SELECT * FROM login WHERE username='" + document.getElementById("email").value + "'");
+					var jsoncont = JSON.stringify(user);
+					console.log(Object.keys(user).length);
+
+					let field = document.getElementById("email").value;
+					if(	Object.keys(user).length > 0){
+						if(document.getElementById("password").value == "mysecurepassword"){
+							document.getElementById("loginText").innerHTML = "Welcome John Smith";
+						}
+						else{
+							document.getElementById("loginText").innerHTML = "LOGIN FAILED: Incorrect password";
+						}
+					}
+					else{
+						document.getElementById("loginText").innerHTML = "LOGIN FAILED: Username/Email not found";
+					}
+				}
+				r.readAsArrayBuffer(f);
+			}
 			function runSql(){
 
 				var SQL = window.SQL;
@@ -94,10 +107,10 @@
 						db = new SQL.Database(Uints);
 						var contents = db.exec("SELECT * FROM login WHERE securityAnswer='" + document.getElementById("secAnswer").value + "'");
 						var jsoncont = JSON.stringify(contents);
-						var el = document.getElementById('main');
+						var el = document.getElementById('loginOutput');
 						el.innerHTML = jsoncont;
 						console.log(jsoncont);
-						document.getElementById("loginText").innerHTML = ("Welcome'" + jsoncont.values + "'");
+						document.getElementById("loginText").innerHTML = ("Welcome " + contents[0].values[0][0] + ", ");
 					}
 					r.readAsArrayBuffer(f);
 				}
