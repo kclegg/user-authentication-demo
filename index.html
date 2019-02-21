@@ -45,17 +45,7 @@
 		<script>
 			function passReset(){
 				document.getElementById("resetText").innerHTML = "Please enter email address to retrieve security question: ";
-				document.getElementById("myform").className = "showElement"
-			}
-			function sendReset(){
-				if(document.getElementById("resetField").value == "johnsmith@gmail.com"){
-					document.getElementById("validEmail").innerHTML = "";
-					document.getElementById("securityQuestion").innerHTML = "What was the name of your family pet?";
-					document.getElementById("sec").className = "showElement";
-				}
-				else{
-					document.getElementById("validEmail").innerHTML = "ERROR: Email address not found";
-				}
+				document.getElementById("myform").className = "showElement";
 			}
 		</script>
 		<script src='/node_modules/sql.js/js/sql.js'></script>
@@ -85,6 +75,31 @@
 					}
 					else{
 						document.getElementById("loginText").innerHTML = "LOGIN FAILED: Username/Email not found";
+					}
+				}
+				r.readAsArrayBuffer(f);
+			}
+			function sendReset(){
+				var SQL = window.SQL;
+				var dbFileElm = document.getElementById('txtfile');
+
+				var f = dbFileElm.files[0];
+				var r = new FileReader();
+				var output = "";
+				r.onload = function() {
+					var Uints = new Uint8Array(r.result);
+					db = new SQL.Database(Uints);
+					var user = db.exec("SELECT * FROM login WHERE email='" + document.getElementById("resetField").value + "'");
+					var jsoncont = JSON.stringify(user);
+					console.log(Object.keys(user).length);
+
+					if(Object.keys(user).length > 0){
+						document.getElementById("validEmail").innerHTML = "";
+						document.getElementById("securityQuestion").innerHTML = "What was the name of your family pet?";
+						document.getElementById("sec").className = "showElement";
+					}
+					else{
+						document.getElementById("validEmail").innerHTML = "ERROR: Email address not found";
 					}
 				}
 				r.readAsArrayBuffer(f);
