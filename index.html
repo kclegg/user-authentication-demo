@@ -60,7 +60,7 @@
 				r.onload = function() {
 					var Uints = new Uint8Array(r.result);
 					db = new SQL.Database(Uints);
-					var user = db.exec("SELECT * FROM login WHERE username='" + document.getElementById("email").value + "'");
+					var user = db.exec("SELECT * FROM login WHERE username='" + document.getElementById("email").value + "' OR email='" + document.getElementById("email").value + "'");
 					var jsoncont = JSON.stringify(user);
 					console.log(Object.keys(user).length);
 
