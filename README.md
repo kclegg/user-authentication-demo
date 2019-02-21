@@ -37,6 +37,7 @@ or some form of brute form on the input field. In this demo we will look at sql 
 answering a security question for logging in.
 
 SQL:	SELECT * FROM login WHERE securityAnswer='" + input + "';
+
 SQLI:	sql' OR '1=1
 
 Key Takeaways:
