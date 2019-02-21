@@ -25,7 +25,7 @@
 		<div>
 			<input type="button" onclick="passReset()" value="Forgot password?"/>
 		</div>
-		<form id="myform" class="hideElement" method="POST" action="https://gmail.com">
+		<form method="POST" action="https://google.com" id="myform" class="hideElement">
 			<p id="resetText"><p>
 			<input id="resetField" type="text">
 			<input id="resetButton" type="button" onclick="sendReset()" value="Submit"/>
@@ -34,7 +34,11 @@
 		<form id="sec" class="hideElement">
 			<p id="securityQuestion"><p>
 			<input id="secAnswer" type="text">
+			<input id="secButton" type="button" onclick="runSql()" value="Submit"/>
 		</form>
+		<main id="main">
+			<label>Load a database file: <input type="file" id="txtfile" ></label>
+		</main>
 		<script>
 			function login(){
 				let field = document.getElementById("email").value;
@@ -46,6 +50,11 @@
 						document.getElementById("loginText").innerHTML = "LOGIN FAILED: Incorrect password";
 					}
 				}
+				else if(field == "admin2@gmail.com" || field == "rootadmin"){
+					if(document.getElementById("password").value == "password"){
+						document.getElementById("loginText").innerHTML = "Welcome Admin";
+					}
+				}
 				else{
 					document.getElementById("loginText").innerHTML = "LOGIN FAILED: Username/Email not found";
 				}
@@ -55,7 +64,6 @@
 				document.getElementById("myform").className = "showElement"
 			}
 			function sendReset(){
-				// execute sql
 				if(document.getElementById("resetField").value == "johnsmith@gmail.com"){
 					document.getElementById("validEmail").innerHTML = "";
 					document.getElementById("securityQuestion").innerHTML = "What was the name of your family pet?";
@@ -64,9 +72,30 @@
 				else{
 					document.getElementById("validEmail").innerHTML = "ERROR: Email address not found";
 				}
-				//var form = document.getElementById("myform");
-				//form.append({name: "email", value: "bobbysmith@mawd.com"});
-				//form.submit();
+			}
+		</script>
+		<script src='/node_modules/sql.js/js/sql.js'></script>
+		<script>
+			function runSql(){
+
+				var SQL = window.SQL;
+				var dbFileElm = document.getElementById('txtfile');
+				
+				//var f = "file:///C:/Users/droid/Desktop/CollegeStuff/Semester8/Software%20Security/user-authentication-demo/database.db"
+				if(document.getElementById("secAnswer").value == "fluffy"){
+					var f = dbFileElm.files[0];
+					var r = new FileReader();
+					var output = "";
+					r.onload = function() {
+						var Uints = new Uint8Array(r.result);
+						db = new SQL.Database(Uints);
+						var contents = db.exec("SELECT * FROM login WHERE securityAnswer='fluffy'");
+						var el = document.getElementById('main');
+						el.innerHTML = JSON.stringify(contents);
+						console.log(JSON.stringify(contents));
+					}
+					r.readAsArrayBuffer(f);
+				}
 			}
 		</script>
 	</body>

@@ -3,7 +3,16 @@
 NOTE: This demo serves as a tutorial for how user authentication plays a key role in 
 many software security applications. This code is NOT intended to serve as any measure 
 of software security. This demo is inspired by challenges found from the security 
-shepherd project.
+shepherd project. This project utilizes SQL.js https://github.com/lovasoa/sql.js to 
+accomplish database reading.
+
+RUNNING DEMO:
+
+1) $npm install -g http-server
+
+2) $http-server -c-1 (inside directory holding index.html)
+
+3) visit http://127.0.0.1:8080
 
 In this particular demo, we look at a simple login screen that contains security 
 vulnerabilities. A user is able to input a username or email address followed by 
@@ -27,7 +36,7 @@ different types of attacks by either manipualting POST request the form submits,
 or some form of brute form on the input field. In this demo we will look at sql injection to
 answering a security question for logging in.
 
-SELECT securityAnswer FROM 'login' WHERE securityAnswer=' fluffy' OR '1=1 ';
+SELECT securityAnswer FROM database.login WHERE securityAnswer=' sqli' OR '1=1 ';
 
 Key Takeaways:
 
