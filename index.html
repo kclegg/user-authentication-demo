@@ -76,8 +76,8 @@
 
 					let field = document.getElementById("email").value;
 					if(	Object.keys(user).length > 0){
-						if(document.getElementById("password").value == "mysecurepassword"){
-							document.getElementById("loginText").innerHTML = "Welcome John Smith";
+						if(document.getElementById("password").value == user[0].values[0][2]){
+							document.getElementById("loginText").innerHTML = ("Welcome " + user[0].values[0][0] + ", ");
 						}
 						else{
 							document.getElementById("loginText").innerHTML = "LOGIN FAILED: Incorrect password";
