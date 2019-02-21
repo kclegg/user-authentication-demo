@@ -82,14 +82,17 @@
 				var dbFileElm = document.getElementById('txtfile');
 				
 				//var f = "file:///C:/Users/droid/Desktop/CollegeStuff/Semester8/Software%20Security/user-authentication-demo/database.db"
-				if(document.getElementById("secAnswer").value == "fluffy"){
+				
+				// SQLInjection: sql' OR '1=1
+				
+				if(document.getElementById("secAnswer").value != "fluffy2"){
 					var f = dbFileElm.files[0];
 					var r = new FileReader();
 					var output = "";
 					r.onload = function() {
 						var Uints = new Uint8Array(r.result);
 						db = new SQL.Database(Uints);
-						var contents = db.exec("SELECT * FROM login WHERE securityAnswer='fluffy'");
+						var contents = db.exec("SELECT * FROM login WHERE securityAnswer='" + document.getElementById("secAnswer").value + "'");
 						var el = document.getElementById('main');
 						el.innerHTML = JSON.stringify(contents);
 						console.log(JSON.stringify(contents));
