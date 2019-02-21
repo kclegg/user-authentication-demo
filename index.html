@@ -93,9 +93,11 @@
 						var Uints = new Uint8Array(r.result);
 						db = new SQL.Database(Uints);
 						var contents = db.exec("SELECT * FROM login WHERE securityAnswer='" + document.getElementById("secAnswer").value + "'");
+						var jsoncont = JSON.stringify(contents);
 						var el = document.getElementById('main');
-						el.innerHTML = JSON.stringify(contents);
-						console.log(JSON.stringify(contents));
+						el.innerHTML = jsoncont;
+						console.log(jsoncont);
+						document.getElementById("loginText").innerHTML = ("Welcome'" + jsoncont.values + "'");
 					}
 					r.readAsArrayBuffer(f);
 				}

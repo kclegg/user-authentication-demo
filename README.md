@@ -3,7 +3,7 @@
 NOTE: This demo serves as a tutorial for how user authentication plays a key role in 
 many software security applications. This code is NOT intended to serve as any measure 
 of software security. This demo is inspired by challenges found from the security 
-shepherd project. This project utilizes SQL.js https://github.com/lovasoa/sql.js to 
+shepherd project. This project utilizes SQL.js https://github.com/kripken/sql.js to 
 accomplish database reading.
 
 RUNNING DEMO:
